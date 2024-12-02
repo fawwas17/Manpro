@@ -1,0 +1,68 @@
+/* Navbar container */
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Membagi antara kiri dan kanan */
+    align-items: center; /* Vertikal align tengah */
+    padding: 10px 20px; /* Jarak dalam navbar */
+    background: #c79237;
+    width: 100%; /* Agar navbar menyesuaikan dengan lebar layar */
+    position: fixed; /* Navbar tetap di atas meskipun discroll */
+    top: 0;
+    left: 0;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    border-radius: 0px; /* Tidak perlu border-radius untuk navbar penuh */
+    z-index: 1000; /* Agar navbar selalu di atas elemen lain */
+}
+
+/* Bagian kiri (halo username) */
+.left-nav {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+}
+
+/* Bagian kanan (navbar links) */
+.right-nav {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    margin-right: 50px;
+}
+
+/* Mengatur style untuk links */
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links li a {
+    color: #333;
+    font-size: 20px;
+    font-weight: 500;
+    text-decoration: none;
+    position: relative;
+    padding: 6px 0;
+}
+
+/* Hover effects */
+.nav-links li a:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: #00f2ff;
+    border-radius: 12px;
+    transition: all 0.4s ease;
+}
+
+.nav-links li a:hover:before {
+    width: 100%;
+}
+
+/* Margin untuk konten agar tidak terhalang navbar */
+body {
+    margin-top: 60px; /* Tambahkan margin sesuai tinggi navbar */
+    background: #fffa78;
+}
