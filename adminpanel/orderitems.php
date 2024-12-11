@@ -89,10 +89,10 @@
 
 					// Display order items
 					if (isset($_GET['oid'])) {
-						$oid = validateInput($_GET['oid']);
+						$oid = $_GET['oid'];
 
 						$sql = "SELECT product.productname, orderitem.qty, orderitem.item_price 
-								FROM tblorderitem 
+								FROM orderitem 
 								INNER JOIN product ON orderitem.pid = product.pid 
 								WHERE orderitem.oid = ? 
 								ORDER BY orderitem.oiid DESC";

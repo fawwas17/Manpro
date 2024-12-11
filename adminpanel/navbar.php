@@ -4,11 +4,11 @@
   </div>
   <nav class="navbar" id="navbar">
     <a href="../adminpanel/" name="home">Home</a>
-    <a href="produk.php" name="about-us">Produk</a>
-    <a href="kategori.php" name="Team">Kategori</a>
-    <a href="order.php" name="contact">Order</a>
-    <a href="user.php" name="home">Users</a>
-    <a href="admin.php" name="about-us">Admin</a>
-    <a href="logout.php" name="Team">Log Out</a>
+    <a href="/adminpanel/produk.php" name="about-us">Produk</a>
+    <a href="/adminpanel/kategori.php" name="Team">Kategori</a>
+    <a href="/adminpanel/order.php" name="contact">Order</a>
+    <a href="/adminpanel/user.php" name="home">Users</a>
+    <a href="/adminpanel/admin.php" name="about-us">Admin</a>
+    <a href="/adminpanel/logout.php" name="Team">Log Out</a>
   </nav>
 </header>
