@@ -1,5 +1,5 @@
 <!--
-"Medika Store" adalah sebuah website e-commerce yang dikembangkan untuk keperluan akademis. Website ini merupakan contoh sederhana dari sebuah keranjang belanja dan mungkin mengandung kesalahan atau bug.
+"Paw Store" adalah sebuah website e-commerce yang dikembangkan untuk keperluan akademis. Website ini merupakan contoh sederhana dari sebuah keranjang belanja dan mungkin mengandung kesalahan atau bug.
 
 Didesain dan dikembangkan oleh Achmad Sirajul Fahmi. (c) 2024 Hak Cipta Dilindungi.
 -->

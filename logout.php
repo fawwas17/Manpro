@@ -1,5 +1,5 @@
 <!--
-"Medika Store" adalah toko online alat kesehatan yang dikembangkan untuk keperluan akademis. Desain dan pengembangan oleh Achmad Sirajul Fahmi. (c) 2024 Hak Cipta Dilindungi.
+"Paw Store" adalah toko online alat kesehatan yang dikembangkan untuk keperluan akademis. Desain dan pengembangan oleh Achmad Sirajul Fahmi. (c) 2024 Hak Cipta Dilindungi.
 -->
 <?php
 

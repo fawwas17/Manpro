@@ -53,6 +53,15 @@ include "core.php";
         font-size: 18px; /* Mengatur ukuran teks */
         padding: 10px; /* Menambahkan jarak di dalam input box */
     }
+    .about-title{
+        font-size: 20px;
+        font-weight: semibold;
+        margin-bottom: 20px;
+    }
+    .about-description{
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
 </style>
 
 <body>
@@ -63,15 +72,15 @@ include "core.php";
 	</div>
     
     <div class="container-top">
-        <h2>Tentang Paws Store</h2>
-        <p>Paws Store adalah toko online alat kesehatan yang dikembangkan untuk keperluan akademis, dengan
+        <h2 class="about-title">Tentang Paws Store</h2>
+        <p class="about-description">Paws Store adalah toko online alat kesehatan yang dikembangkan untuk keperluan akademis, dengan
 		tujuan untuk menyediakan akses yang mudah dan cepat kepada pelanggan kami untuk mendapatkan berbagai
 		jenis alat kesehatan yang berkualitas tinggi dan harga yang kompetitif.</p>
-		<p>Kami berkomitmen untuk memberikan pelayanan yang terbaik kepada pelanggan kami, dengan menyediakan
+		<p class="about-description">Kami berkomitmen untuk memberikan pelayanan yang terbaik kepada pelanggan kami, dengan menyediakan
 		produk yang aman, efektif, dan mudah digunakan. Kami juga berusaha untuk memastikan bahwa semua
 		produk yang kami jual telah memenuhi standar kualitas yang tinggi dan telah diuji secara menyeluruh
 		sebelum dijual.</p>
-		<p>Paws Store juga berusaha untuk menjadi toko online alat kesehatan yang paling terpercaya dan
+		<p class="about-description">Paws Store juga berusaha untuk menjadi toko online alat kesehatan yang paling terpercaya dan
 		dipercaya oleh pelanggan kami. Kami berusaha untuk membangun hubungan yang baik dengan pelanggan
 		kami dan memberikan pelayanan yang memuaskan.</p>
 			</div>

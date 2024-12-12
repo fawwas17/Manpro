@@ -1,5 +1,5 @@
 <?php
-require "session.php";
+// require "session.php";
 require "../koneksi.php";
 require_once "laporan.php";
 

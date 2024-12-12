@@ -21,7 +21,7 @@ function mainMenu()
     if (isset($_SESSION['uid'])) {
         echo '<header class="header">';
         echo '<div class="logo">';
-        echo '<a href="#" class="logo"><i class="fas fa-cat"></i>Paw Store</a>';
+        echo '<a href="#" class="logo" style="font-size:20px;"><i class="fas fa-cat"></i>Paw Store</a>';
         echo '</div>';
         echo '<nav class="navbar" id="navbar">';
         echo '<a href="index.php" name="home">Home</a>';

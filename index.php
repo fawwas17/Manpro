@@ -1,5 +1,5 @@
 <?php
-session_start(); // Pastikan session dimulai
+// session_start(); // Pastikan session dimulai
 include "core.php";
 include "koneksi.php";
 
@@ -69,7 +69,7 @@ if (isset($_GET['pid'])) {
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-  <title>Medika Store</title>
+  <title>Paw Store</title>
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="fontawesome/css/fontawesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -149,7 +149,9 @@ if (isset($_GET['pid'])) {
     color: white;
     padding: 10px;
     border-radius: 5px;
+    border-color: #0003;
     text-decoration: none;
+    font-size: 12px;
   }
 
   .btn:hover {
@@ -161,6 +163,19 @@ if (isset($_GET['pid'])) {
     margin-bottom: 50px;
   }
 
+  .hero-title {
+    font-size: 20px;
+    margin-top: 100px;
+  }
+  .hero-description{
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  .price {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
 </style>
 
 <body>
@@ -169,8 +184,8 @@ if (isset($_GET['pid'])) {
     </div>
 
     <div class="container-top">
-        <h2>Selamat Datang di Paw Store!</h2>
-        <p>Kami menyediakan berbagai jenis peralatan kesehatan yang berkualitas tinggi dan harga yang kompetitif. Kami
+        <h2 class="hero-title">Selamat Datang di Paw Store!</h2>
+        <p class="hero-description">Kami menyediakan berbagai jenis peralatan kesehatan yang berkualitas tinggi dan harga yang kompetitif. Kami
             berkomitmen untuk memberikan pelayanan yang terbaik kepada pelanggan kami.</p>
 
         <div class="product-container">
@@ -209,7 +224,7 @@ if (isset($_GET['pid'])) {
               echo "<div class='product-item'>";
               echo "<img src='" . htmlspecialchars($row['imgurl']) . "' alt='" . htmlspecialchars($row['productname']) . "' />";
               echo "<h5>" . htmlspecialchars($row['productname']) . "</h5>";
-              echo "<p>Rp. " . number_format($row['price'], 0, ',', '.') . "</p>";
+              echo "<p class='price'>Rp. " . number_format($row['price'], 0, ',', '.') . "</p>";
               echo "<a href='index.php?pid=" . htmlspecialchars($row['pid']) . "&page=$page' class='btn'>Add To Cart</a>";
               echo "</div>";
             }

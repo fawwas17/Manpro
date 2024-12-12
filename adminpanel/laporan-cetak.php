@@ -48,7 +48,7 @@ function generateLaporanPdf($oid)
   // Set up TCPDF
   $pdf = new TCPDF('L', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
   $pdf->SetCreator('TCPDF');
-  $pdf->SetAuthor('Medika Store');
+  $pdf->SetAuthor('Paw Store');
   $pdf->SetTitle('Laporan Belanja');
   $pdf->SetSubject('Laporan Belanja');
   $pdf->SetKeywords('laporan, belanja, medika, store');
