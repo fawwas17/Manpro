@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 09, 2024 at 02:14 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Waktu pembuatan: 18 Des 2024 pada 15.57
+-- Versi server: 10.4.22-MariaDB
+-- Versi PHP: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Struktur dari tabel `admin`
 --
 
 CREATE TABLE `admin` (
@@ -33,10 +33,10 @@ CREATE TABLE `admin` (
   `address` varchar(250) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `admin`
+-- Dumping data untuk tabel `admin`
 --
 
 INSERT INTO `admin` (`aid`, `username`, `address`, `email`, `password`) VALUES
@@ -47,16 +47,16 @@ INSERT INTO `admin` (`aid`, `username`, `address`, `email`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cart`
+-- Struktur dari tabel `cart`
 --
 
 CREATE TABLE `cart` (
   `cid` int(11) NOT NULL,
   `uid` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `cart`
+-- Dumping data untuk tabel `cart`
 --
 
 INSERT INTO `cart` (`cid`, `uid`) VALUES
@@ -66,7 +66,7 @@ INSERT INTO `cart` (`cid`, `uid`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cartdetail`
+-- Struktur dari tabel `cartdetail`
 --
 
 CREATE TABLE `cartdetail` (
@@ -74,10 +74,10 @@ CREATE TABLE `cartdetail` (
   `cid` int(11) NOT NULL,
   `pid` int(11) NOT NULL,
   `qty` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `cartdetail`
+-- Dumping data untuk tabel `cartdetail`
 --
 
 INSERT INTO `cartdetail` (`cdid`, `cid`, `pid`, `qty`) VALUES
@@ -87,28 +87,31 @@ INSERT INTO `cartdetail` (`cdid`, `cid`, `pid`, `qty`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kategori`
+-- Struktur dari tabel `kategori`
 --
 
 CREATE TABLE `kategori` (
   `cid` int(11) NOT NULL,
   `categoryname` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `kategori`
+-- Dumping data untuk tabel `kategori`
 --
 
 INSERT INTO `kategori` (`cid`, `categoryname`) VALUES
 (4, 'Obat Luka'),
 (5, 'Obat Jamur'),
 (6, 'Obat Kutu'),
-(7, 'Obat Cacing');
+(7, 'Obat Cacing'),
+(8, 'Makanan Kucing'),
+(9, 'Mainan'),
+(10, 'Makanan Anjing');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order`
+-- Struktur dari tabel `order`
 --
 
 CREATE TABLE `order` (
@@ -121,10 +124,10 @@ CREATE TABLE `order` (
   `bank` varchar(50) DEFAULT NULL,
   `valid` varchar(10) NOT NULL DEFAULT 'No',
   `uid` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `order`
+-- Dumping data untuk tabel `order`
 --
 
 INSERT INTO `order` (`oid`, `time`, `price`, `acc_number`, `payment_method`, `address`, `bank`, `valid`, `uid`) VALUES
@@ -141,12 +144,14 @@ INSERT INTO `order` (`oid`, `time`, `price`, `acc_number`, `payment_method`, `ad
 (11, '2024-10-08 18:14:32', 20000, '089374', 'Prepaid', 'Jl. Kemangi', 'BNI', 'Yes', 3),
 (12, '2024-10-08 19:13:54', 170000, '089374', 'Prepaid', 'Jl. Kemangi', 'BNI', 'No', 3),
 (13, '2024-10-08 19:44:37', 20000, '089374', 'Prepaid', 'Jl. Kemangi', 'BNI', 'Yes', 3),
-(14, '2024-10-08 20:05:46', 170000, '0009000', 'Prepaid', 'Jl. Nagasari', 'BNI', 'No', 4);
+(14, '2024-10-08 20:05:46', 170000, '0009000', 'Prepaid', 'Jl. Nagasari', 'BNI', 'No', 4),
+(15, '2024-12-11 16:34:22', 50000, '085156549426', 'Prepaid', 'perumahan', 'DANA', 'Yes', 5),
+(16, '2024-12-12 01:13:23', 100000, '085156549426', 'Prepaid', 'perumahan', 'DANA', 'Yes', 5);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `orderitem`
+-- Struktur dari tabel `orderitem`
 --
 
 CREATE TABLE `orderitem` (
@@ -156,10 +161,10 @@ CREATE TABLE `orderitem` (
   `uid` int(11) NOT NULL,
   `qty` int(11) NOT NULL DEFAULT 1,
   `item_price` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `orderitem`
+-- Dumping data untuk tabel `orderitem`
 --
 
 INSERT INTO `orderitem` (`oiid`, `pid`, `oid`, `uid`, `qty`, `item_price`) VALUES
@@ -181,12 +186,14 @@ INSERT INTO `orderitem` (`oiid`, `pid`, `oid`, `uid`, `qty`, `item_price`) VALUE
 (16, 11, 12, 3, 1, 20000),
 (17, 11, 13, 3, 1, 20000),
 (18, 15, 14, 4, 1, 150000),
-(19, 11, 14, 4, 1, 20000);
+(19, 11, 14, 4, 1, 20000),
+(20, 16, 15, 5, 1, 50000),
+(21, 16, 16, 5, 2, 50000);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product`
+-- Struktur dari tabel `product`
 --
 
 CREATE TABLE `product` (
@@ -196,22 +203,26 @@ CREATE TABLE `product` (
   `imgurl` varchar(100) NOT NULL,
   `price` float NOT NULL,
   `category_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `product`
+-- Dumping data untuk tabel `product`
 --
 
 INSERT INTO `product` (`pid`, `productname`, `description`, `imgurl`, `price`, `category_id`) VALUES
 (10, 'Scadix Spray Obat Luka 60ml', 'Scadix adalah produk obat spray pada kucing paling ampuh karena menggunakan wedang jahe', 'image/products/scadix.jpg', 20000, 4),
 (11, 'Miconazole Nitrate 2%', 'Miconazole Nitrate 2% adalah obat antijamur topikal yang dirancang khusus untuk mengobati infeksi kulit pada kucing, termasuk infeksi yang disebabkan oleh jamur seperti tinea, dermatofitosis, dan infeksi kulit akibat Candida. Obat ini bekerja dengan', 'image/products/Miconazole.jpg', 20000, 5),
 (15, 'Revolution Obat Kutu Kucing', 'Revolution for Cats adalah obat kutu kucing tetes yang cara kerjanya langsung menyerap ke dalam pembuluh darah kucing1. Obat ini mengandung Selamectin dan berfungsi sebagai obat pembunuh kutu, dan mencegah telur kutu dari menetas hingga berusia satu ', 'image/products/revolution.jpg', 150000, 6),
-(16, 'Drontal untuk Kucing dan Anjing', 'rontal Cat Tablet adalah obat cacing spektrum luas untuk kucing yang mencegah dan mengobati infeksi cacing saluran cerna. Obat ini mengandung pyrantel embonate dan praziquantel', 'image/products/Drontal.jpg', 50000, 7);
+(16, 'Drontal untuk Kucing dan Anjing', 'rontal Cat Tablet adalah obat cacing spektrum luas untuk kucing yang mencegah dan mengobati infeksi cacing saluran cerna. Obat ini mengandung pyrantel embonate dan praziquantel', 'image/products/Drontal.jpg', 50000, 7),
+(17, 'Felibite Mother and Kitten 500 g', 'Makanan ini memiliki kandungan omega 3 dan 6 yang baik untuk menjaga kesehatan bulu, taurine untuk kesehatan mata, dan yucca extract untuk mengurangi bau pada kotoran.', 'image/products/Felibite-Mother-and-Kitten.jpg', 29400, 8),
+(18, 'Royal Canin Kitten Makanan Anak Kucing Dry 10 kg', 'Royal Canin Kitten dapat kamu berikan pada anak kucing berusia 12 bulan. Makanan ini mampu meningkatkan kinerja pencernaan karena kandungan LIP. Kandungan ini merupakan zat protein dengan tingkat daya cerna yang mencapai 90 persen.', 'image/products/Royal-Canin-Kitten-Makanan-Anak-Kucing-Dry.jpg', 1227500, 8),
+(19, 'cat tree', 'Kucing punya kebiasaan mencakar. Oleh karena itu, kamu bisa menyediakan mainan pohon (cat tree) sebagai tempatnya bermain. Cat tree juga bisa melatih kucing untuk tidak mencakar di tempat yang tidak seharusnya, misalnya kasur atau sofa di rumahmu. Ma', 'image/products/Luxury.jpg', 559000, 9),
+(20, 'Nature Bridge Lohas Dog ALS with Goat Milk', 'Nature Bridge Lohas Dog ALS with Goat Milk adalah salah satu produk makanan anjing terbaik yang cocok untuk anjing peliharaan dari segala tahapan usia maupun ras.\\r\\n\\r\\nSesuai dengan namanya, dry food ini mengandung daging ayam dan susu kambing yang', 'image/products/fda1cacf-nature-.jpg', 215000, 10);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
@@ -224,34 +235,35 @@ CREATE TABLE `user` (
   `gender` varchar(10) DEFAULT NULL,
   `city` varchar(50) DEFAULT NULL,
   `contact_no` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user`
+-- Dumping data untuk tabel `user`
 --
 
 INSERT INTO `user` (`uid`, `username`, `address`, `email`, `password`, `date_of_birth`, `gender`, `city`, `contact_no`) VALUES
 (3, 'admin', 'Jl. Kemangi', 'pawpawpikpik747@gmail.com', '3a2e378df3e264ce468013b275102223', '1998-10-20', 'male', 'Bandung', '099999'),
-(4, 'Koala', 'Jl. Nagasari', 'pawpawpikpik91@gmail.com', 'c4cf192ff255dddf4cc2018dc622f834', '2005-02-11', 'male', 'Yogyakarta', '05677777');
+(4, 'Koala', 'Jl. Nagasari', 'pawpawpikpik91@gmail.com', 'c4cf192ff255dddf4cc2018dc622f834', '2005-02-11', 'male', 'Yogyakarta', '05677777'),
+(5, 'fihrisaldama', 'perumahan', 'fihrisaldama015@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2003-05-13', 'male', 'Surabaya', '085156549426');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `admin`
+-- Indeks untuk tabel `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`aid`);
 
 --
--- Indexes for table `cart`
+-- Indeks untuk tabel `cart`
 --
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`cid`);
 
 --
--- Indexes for table `cartdetail`
+-- Indeks untuk tabel `cartdetail`
 --
 ALTER TABLE `cartdetail`
   ADD PRIMARY KEY (`cdid`),
@@ -259,101 +271,101 @@ ALTER TABLE `cartdetail`
   ADD KEY `pid` (`pid`);
 
 --
--- Indexes for table `kategori`
+-- Indeks untuk tabel `kategori`
 --
 ALTER TABLE `kategori`
   ADD PRIMARY KEY (`cid`);
 
 --
--- Indexes for table `order`
+-- Indeks untuk tabel `order`
 --
 ALTER TABLE `order`
   ADD PRIMARY KEY (`oid`);
 
 --
--- Indexes for table `orderitem`
+-- Indeks untuk tabel `orderitem`
 --
 ALTER TABLE `orderitem`
   ADD PRIMARY KEY (`oiid`);
 
 --
--- Indexes for table `product`
+-- Indeks untuk tabel `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`pid`),
   ADD KEY `fk_category` (`category_id`);
 
 --
--- Indexes for table `user`
+-- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`uid`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `admin`
+-- AUTO_INCREMENT untuk tabel `admin`
 --
 ALTER TABLE `admin`
   MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `cart`
+-- AUTO_INCREMENT untuk tabel `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
--- AUTO_INCREMENT for table `cartdetail`
+-- AUTO_INCREMENT untuk tabel `cartdetail`
 --
 ALTER TABLE `cartdetail`
-  MODIFY `cdid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `cdid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
--- AUTO_INCREMENT for table `kategori`
+-- AUTO_INCREMENT untuk tabel `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `order`
+-- AUTO_INCREMENT untuk tabel `order`
 --
 ALTER TABLE `order`
-  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `orderitem`
+-- AUTO_INCREMENT untuk tabel `orderitem`
 --
 ALTER TABLE `orderitem`
-  MODIFY `oiid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `oiid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT for table `product`
+-- AUTO_INCREMENT untuk tabel `product`
 --
 ALTER TABLE `product`
-  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `cartdetail`
+-- Ketidakleluasaan untuk tabel `cartdetail`
 --
 ALTER TABLE `cartdetail`
   ADD CONSTRAINT `cartdetail_ibfk_1` FOREIGN KEY (`cid`) REFERENCES `cart` (`cid`) ON DELETE CASCADE,
   ADD CONSTRAINT `cartdetail_ibfk_2` FOREIGN KEY (`pid`) REFERENCES `product` (`pid`) ON DELETE CASCADE;
 
 --
--- Constraints for table `product`
+-- Ketidakleluasaan untuk tabel `product`
 --
 ALTER TABLE `product`
   ADD CONSTRAINT `fk_category` FOREIGN KEY (`category_id`) REFERENCES `kategori` (`cid`);
