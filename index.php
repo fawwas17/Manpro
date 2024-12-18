@@ -221,7 +221,18 @@ if ($catResult->num_rows > 0) {
     background-color: #d32f2f;
   }
 
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+  }
 
+  .bg-blue{
+    background-color: #007bff;
+  }
+
+  .bg-blue:hover{
+    background-color: #0056b3;
+  }
 </style>
 
 <body>
@@ -283,22 +294,23 @@ if ($catResult->num_rows > 0) {
 
           $stmt->execute();
           $result = $stmt->get_result();
-
-          if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-              echo "<div class='product-item'>";
-              echo "<img src='" . htmlspecialchars($row['imgurl']) . "' alt='" . htmlspecialchars($row['productname']) . "' />";
-              echo "<h5>" . htmlspecialchars($row['productname']) . "</h5>";
-              echo "<p class='price'>Rp. " . number_format($row['price'], 0, ',', '.') . "</p>";
-              echo "<a href='index.php?pid=" . htmlspecialchars($row['pid']) . "&page=$page' class='btn'>Add To Cart</a>";
-              echo "</div>";
-            }
-          } else {
-            echo "<p>Tidak ada produk yang tersedia</p>";
-          }
           ?>
+          <?php if ($result->num_rows > 0): ?>
+          <?php while ($row = $result->fetch_assoc()): ?>
+            <div class="product-item">
+              <img src="<?= htmlspecialchars($row['imgurl']); ?>" alt="<?= htmlspecialchars($row['productname']); ?>" />
+              <h5><?= htmlspecialchars($row['productname']); ?></h5>
+              <p class="price">Rp. <?= number_format($row['price'], 0, ',', '.'); ?></p>
+              <div class="button-container">
+                <a href="produk-detail.php?pid=<?= htmlspecialchars($row['pid']); ?>" class="btn bg-blue">Lihat Detail</a>
+                <a href="index.php?pid=<?= htmlspecialchars($row['pid']); ?>&page=<?= $page; ?>" class="btn">Add To Cart</a>
+              </div>
+            </div>
+          <?php endwhile; ?>
+          <?php else: ?>
+            <p>Tidak ada produk yang tersedia</p>
+          <?php endif; ?>
         </div>
-
         <div class="pagination">
           <?php
         // Page navigation links
