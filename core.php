@@ -27,6 +27,7 @@ function mainMenu()
         echo '<a href="index.php" name="home">Home</a>';
         echo '<a href="cart.php" name="contact">Keranjang</a>';
         echo '<a href="orders.php" name="home">Pesanan</a>';
+        echo '<a href="profile.php" name="profile">Profile</a>';
         echo '<a href="about.php" name="about-us">About</a>';
         echo '<a href="logout.php" name="Team">Log out</a>';
         echo '</nav>';
