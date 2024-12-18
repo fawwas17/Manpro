@@ -20,6 +20,9 @@
 </head>
 
 <style>
+    body{
+        font-size:14px;
+    }
     .kotak {
         border: solid;
     }

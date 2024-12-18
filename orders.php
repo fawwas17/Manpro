@@ -25,6 +25,9 @@ if (!isset($_SESSION['uid'])) {
 </head>
 
 <style>
+	body{
+		font-size:14px;
+	}
     .kotak {
         border: solid;
     }

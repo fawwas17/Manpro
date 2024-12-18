@@ -54,6 +54,9 @@ if (!isset($_SESSION['uid'])) {
 </head>
 
 <style>
+    body{
+      font-size:14px;
+    }
     .kotak {
         border: solid;
     }
@@ -86,6 +89,9 @@ if (!isset($_SESSION['uid'])) {
         height: 60px; /* Mengatur tinggi input box */
         font-size: 18px; /* Mengatur ukuran teks */
         padding: 10px; /* Menambahkan jarak di dalam input box */
+    }
+    .btn-checkout{
+      margin-bottom:4rem;
     }
 </style>
 
