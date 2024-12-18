@@ -79,6 +79,13 @@ $mysqli->close();
         .label {
             font-weight: bold;
         }
+        .product-img{
+            width: 40rem;
+            height: auto;
+            object-fit: cover;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
         .product-name{
             font-size:2rem;
             margin-top:1rem;
@@ -133,7 +140,7 @@ $mysqli->close();
         <div class="product-name"> <?= htmlspecialchars($product['productname']); ?></div>
         <div class="details">
             <div>
-                <div><img src="<?= htmlspecialchars($product['imgurl']); ?>" alt="<?= htmlspecialchars($product['productname']); ?>" class="product-image" /></div>
+                <div><img src="<?= htmlspecialchars($product['imgurl']); ?>" alt="<?= htmlspecialchars($product['productname']); ?>" class="product-img" /></div>
                 <div class="price">Rp. <?= number_format($product['price'], 0, ',', '.'); ?></div>
             </div>
             <div class="detail-product">

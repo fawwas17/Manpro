@@ -173,7 +173,7 @@ if ($catResult->num_rows > 0) {
   .pagination{
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin: 20px 0;
     align-items: center;
     gap: 1rem;
     text-align:center;
