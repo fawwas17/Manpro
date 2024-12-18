@@ -62,6 +62,15 @@ if (isset($_GET['pid'])) {
         echo "Anda harus login untuk menambahkan produk ini ke keranjang";
     }
 }
+
+$categories = [];
+$catSql = "SELECT * FROM kategori";
+$catResult = $mysqli->query($catSql);
+if ($catResult->num_rows > 0) {
+    while ($catRow = $catResult->fetch_assoc()) {
+        $categories[] = $catRow;
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -82,6 +91,7 @@ if (isset($_GET['pid'])) {
 <style>
   body {
     background-color: #f5f5f5;
+    font-size: 14px;
   }
 
   .kotak {
@@ -154,6 +164,15 @@ if (isset($_GET['pid'])) {
     font-size: 12px;
   }
 
+  .pagination{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    align-items: center;
+    gap: 1rem;
+    text-align:center;
+  }
+
   .btn:hover {
     background-color: #218838;
     color: white;
@@ -176,6 +195,12 @@ if (isset($_GET['pid'])) {
     font-weight: bold;
   }
 
+  .dropdown-filter{
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-left: 10px;
+  }
+
 </style>
 
 <body>
@@ -187,18 +212,32 @@ if (isset($_GET['pid'])) {
         <h2 class="hero-title">Selamat Datang di Paw Store!</h2>
         <p class="hero-description">Kami menyediakan berbagai jenis peralatan kesehatan yang berkualitas tinggi dan harga yang kompetitif. Kami
             berkomitmen untuk memberikan pelayanan yang terbaik kepada pelanggan kami.</p>
+        <form method="GET" action="index.php">
+            <label>Filter Produk Berdasarkan:</label>
+            <select name="category" class="dropdown-filter" required onchange="this.form.submit()">
+              <option value=""><?= isset($_GET['category']) && !empty($_GET['category']) 
+              ? array_column($categories, 'categoryname', 'cid')[$_GET['category']] 
+              : 'Pilih Kategori'; ?>
+              </option>
+              <?php foreach ($categories as $category): ?>
+                <option value="<?php echo $category['cid']; ?>">
+                  <?php echo (isset($_GET['category']) && $_GET['category'] == $category['cid']) ? 'selected' : ''; ?>>
+                  <?php echo $category['categoryname']; ?>
+                </option>
+                <?php endforeach; ?>
+              </select>
+              <input type="hidden" name="page" value="<?php echo isset($_GET['page']) ? $_GET['page'] : 1; ?>">
+        </form>
 
         <div class="product-container">
           <?php
+          $category = isset($_GET['category']) ? $_GET['category'] : null;
+          
           // Pagination settings
           $page = null;
           $items_per_page = 4;
-          if (isset($_GET["page"])) {
-            $page = validateInput($_GET["page"]);
-          }
-          if ($page == "" || $page <= 0) {
-            $page = 1;
-          }
+          if (isset($_GET["page"])) $page = validateInput($_GET["page"]);
+          if ($page == "" || $page <= 0) $page = 1;
 
           // Count products
           $query = "SELECT COUNT(*) AS num FROM product";
@@ -207,15 +246,19 @@ if (isset($_GET['pid'])) {
           $row = $stmt->get_result()->fetch_assoc();
           $num_items = $row['num'];
           $num_pages = ceil($num_items / $items_per_page);
-          if (($page > $num_pages) && $page != 1) {
-            $page = $num_pages;
-          }
+          if (($page > $num_pages) && $page != 1) $page = $num_pages;
           $limit_start = ($page - 1) * $items_per_page;
 
-          // Display products
-          $sql = "SELECT * FROM product ORDER BY pid DESC LIMIT ?, ?";
-          $stmt = $mysqli->prepare($sql);
-          $stmt->bind_param("ii", $limit_start, $items_per_page);
+          if ($category) {
+            $sql = "SELECT * FROM product WHERE category_id = ? ORDER BY pid DESC LIMIT ?, ?";
+            $stmt = $mysqli->prepare($sql);
+            $stmt->bind_param("iii", $category, $limit_start, $items_per_page);
+          } else {
+            $sql = "SELECT * FROM product ORDER BY pid DESC LIMIT ?, ?";
+            $stmt = $mysqli->prepare($sql);
+            $stmt->bind_param("ii", $limit_start, $items_per_page);
+          }
+
           $stmt->execute();
           $result = $stmt->get_result();
 
@@ -234,7 +277,8 @@ if (isset($_GET['pid'])) {
           ?>
         </div>
 
-        <?php
+        <div class="pagination">
+          <?php
         // Page navigation links
         if ($num_pages > 1) {
           echo "<div class='pagination'>";
@@ -250,6 +294,7 @@ if (isset($_GET['pid'])) {
           echo "</div>";
         }
         ?>
+        </div>
 
       </div>
 </body>

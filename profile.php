@@ -57,6 +57,7 @@ $mysqli->close();
         }
         .details {
             margin-top: 20px;
+            text-align:center;
         }
         .details div {
             margin-bottom: 10px;
