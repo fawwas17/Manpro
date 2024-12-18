@@ -63,6 +63,11 @@ if (isset($_GET['pid'])) {
     }
 }
 
+if (isset($_GET['reset']) && $_GET['reset'] == 1) {
+  header("Location: index.php");
+  exit;
+}
+
 $categories = [];
 $catSql = "SELECT * FROM kategori";
 $catResult = $mysqli->query($catSql);
@@ -111,6 +116,7 @@ if ($catResult->num_rows > 0) {
 
   .product-container {
     display: flex;
+    margin-top:1rem;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: space-between;
@@ -201,6 +207,21 @@ if ($catResult->num_rows > 0) {
     margin-left: 10px;
   }
 
+  .btn-reset {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .btn-reset:hover {
+    background-color: #d32f2f;
+  }
+
+
 </style>
 
 <body>
@@ -214,7 +235,7 @@ if ($catResult->num_rows > 0) {
             berkomitmen untuk memberikan pelayanan yang terbaik kepada pelanggan kami.</p>
         <form method="GET" action="index.php">
             <label>Filter Produk Berdasarkan:</label>
-            <select name="category" class="dropdown-filter" required onchange="this.form.submit()">
+            <select name="category" class="dropdown-filter" onchange="this.form.submit()">
               <option value=""><?= isset($_GET['category']) && !empty($_GET['category']) 
               ? array_column($categories, 'categoryname', 'cid')[$_GET['category']] 
               : 'Pilih Kategori'; ?>
@@ -227,6 +248,7 @@ if ($catResult->num_rows > 0) {
                 <?php endforeach; ?>
               </select>
               <input type="hidden" name="page" value="<?php echo isset($_GET['page']) ? $_GET['page'] : 1; ?>">
+              <button type="submit" class="btn-reset" name="reset" value="1">Reset</button>
         </form>
 
         <div class="product-container">
